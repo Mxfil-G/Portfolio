@@ -2,6 +2,13 @@
 const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('navLinks');
 const contactForm = document.getElementById('contactForm');
+const submitBtn = document.getElementById('submitBtn');
+const btnText = document.getElementById('btnText');
+const btnLoader = document.getElementById('btnLoader');
+const formMessage = document.getElementById('formMessage');
+
+// NoCRM Configuration
+const NOCRM_EMAIL = 'mxfil@add.nocrm.io';
 
 // Mobile menu toggle
 menuToggle.addEventListener('click', () => {
@@ -54,32 +61,99 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Add input validation
+// NoCRM Form Submission
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
-        const requiredFields = contactForm.querySelectorAll('[required]');
-        let isValid = true;
+        e.preventDefault();
         
-        requiredFields.forEach(field => {
-            if (!field.value.trim()) {
-                field.style.borderColor = '#e74c3c';
-                isValid = false;
-            } else {
-                field.style.borderColor = '#2ecc71';
+        // Show loading state
+        btnText.style.display = 'none';
+        btnLoader.style.display = 'inline-block';
+        submitBtn.disabled = true;
+        formMessage.style.display = 'none';
+        
+        try {
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                company: document.getElementById('company').value.trim() || 'Not provided',
+                phone: document.getElementById('phone').value.trim() || 'Not provided',
+                message: document.getElementById('message').value.trim()
+            };
+
+            // Validate required fields
+            if (!formData.name || !formData.email || !formData.message) {
+                throw new Error('Please fill in all required fields');
             }
-        });
-        
-        if (!isValid) {
-            e.preventDefault();
-            alert('Please fill in all required fields.');
+
+            // Create email body in the format NoCRM expects
+            const emailBody = `
+Name: ${formData.name}
+Email: ${formData.email}
+Company: ${formData.company}
+Phone: ${formData.phone}
+
+Message:
+${formData.message}
+
+---
+Sent from Mxfil-G Website
+            `.trim();
+
+            // Create mailto link for direct email submission
+            const subject = `New Lead: ${formData.name}`;
+            const mailtoLink = `mailto:${NOCRM_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Open user's email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            showMessage('Opening your email client... Please send the email to submit your message.', 'success');
+            
+            // Reset form after a delay
+            setTimeout(() => {
+                contactForm.reset();
+            }, 2000);
+
+        } catch (error) {
+            console.error('Form submission error:', error);
+            showMessage(`Error: ${error.message}`, 'error');
+        } finally {
+            // Reset button state after a delay
+            setTimeout(() => {
+                btnText.style.display = 'inline-block';
+                btnLoader.style.display = 'none';
+                submitBtn.disabled = false;
+            }, 3000);
         }
     });
 }
 
-// Add input styling
+// Show message function
+function showMessage(message, type) {
+    formMessage.textContent = message;
+    formMessage.className = `form-message ${type}`;
+    formMessage.style.display = 'block';
+    
+    // Scroll to message
+    formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    
+    // Auto-hide success messages after 8 seconds
+    if (type === 'success') {
+        setTimeout(() => {
+            formMessage.style.display = 'none';
+        }, 8000);
+    }
+}
+
+// Add input validation
 document.querySelectorAll('.form-control').forEach(input => {
-    input.addEventListener('focus', function() {
-        this.style.borderColor = '#3498db';
+    input.addEventListener('input', function() {
+        if (this.checkValidity()) {
+            this.style.borderColor = '#ddd';
+        } else {
+            this.style.borderColor = '#e74c3c';
+        }
     });
     
     input.addEventListener('blur', function() {
@@ -99,4 +173,31 @@ document.addEventListener('click', (e) => {
     }
 });
 
-console.log('Mxfil-G Website loaded successfully!');
+// Add animations on scroll
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Observe elements for animation
+document.addEventListener('DOMContentLoaded', () => {
+    const animatedElements = document.querySelectorAll('.project-card, .about-content, .contact-content');
+    
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+});
+
+console.log('Mxfil-G Website loaded successfully! 🚀');
