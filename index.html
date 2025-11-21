@@ -59,11 +59,13 @@
                         <span class="skill">Git</span>
                         <span class="skill">Web Development</span>
                         <span class="skill">Problem Solving</span>
+                        <span class="skill">Discord Bots</span>
+                        <span class="skill">API Development</span>
                     </div>
                 </div>
                 <div class="about-image">
                     <div class="profile-img-placeholder">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-code"></i>
                     </div>
                 </div>
             </div>
@@ -82,22 +84,22 @@
                         <i class="fas fa-laptop-code"></i>
                     </div>
                     <div class="project-info">
-                        <h3>Web Development</h3>
-                        <p>Various web applications and sites built with modern technologies and responsive design principles.</p>
+                        <h3>Discord Music Bot</h3>
+                        <p>Advanced music bot with queue system, YouTube integration, and smooth playback.</p>
                         <div class="project-links">
-                            <a href="https://github.com/Mxfil-G" class="project-link" target="_blank">View on GitHub</a>
+                            <a href="https://github.com/Mxfil-G" class="project-link" target="_blank">View Code</a>
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-img">
-                        <i class="fas fa-code"></i>
+                        <i class="fas fa-globe"></i>
                     </div>
                     <div class="project-info">
-                        <h3>Software Projects</h3>
-                        <p>Applications and tools developed to solve specific problems or explore new technologies.</p>
+                        <h3>Personal Website</h3>
+                        <p>Responsive portfolio website with modern design and contact integration.</p>
                         <div class="project-links">
-                            <a href="https://github.com/Mxfil-G" class="project-link" target="_blank">View on GitHub</a>
+                            <a href="https://github.com/Mxfil-G" class="project-link" target="_blank">View Code</a>
                         </div>
                     </div>
                 </div>
@@ -106,10 +108,10 @@
                         <i class="fas fa-tools"></i>
                     </div>
                     <div class="project-info">
-                        <h3>Utilities & Tools</h3>
-                        <p>Helpful scripts and utilities that automate tasks or provide useful functionality.</p>
+                        <h3>Utility Tools</h3>
+                        <p>Collection of helpful scripts and utilities for automation and productivity.</p>
                         <div class="project-links">
-                            <a href="https://github.com/Mxfil-G" class="project-link" target="_blank">View on GitHub</a>
+                            <a href="https://github.com/Mxfil-G" class="project-link" target="_blank">View Code</a>
                         </div>
                     </div>
                 </div>
@@ -156,18 +158,27 @@
                 <div class="contact-form">
                     <form id="contactForm">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Subject" required>
+                            <input type="text" class="form-control" id="company" name="company" placeholder="Company (Optional)">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" placeholder="Your Message" rows="5" required></textarea>
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone (Optional)">
                         </div>
-                        <button type="submit" class="btn">Send Message</button>
+                        <div class="form-group">
+                            <textarea class="form-control" id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn" id="submitBtn">
+                            <span id="btnText">Send Message</span>
+                            <div id="btnLoader" class="btn-loader" style="display: none;">
+                                <div class="spinner"></div>
+                            </div>
+                        </button>
+                        <div id="formMessage" class="form-message"></div>
                     </form>
                 </div>
             </div>
@@ -186,7 +197,7 @@
                         <i class="fab fa-github"></i>
                     </a>
                     <a href="#" class="social-link">
-                        <i class="fab fa-linkedin"></i>
+                        <i class="fab fa-discord"></i>
                     </a>
                     <a href="#" class="social-link">
                         <i class="fab fa-twitter"></i>
