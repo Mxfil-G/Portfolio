@@ -120,70 +120,71 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="section contact" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Get In Touch</h2>
+    <!-- Contact Section -->
+<section class="section contact" id="contact">
+    <div class="container">
+        <div class="section-title">
+            <h2>Get In Touch</h2>
+        </div>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Email</h4>
+                        <p>thatonebirdguy52@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>GitHub</h4>
+                        <p>github.com/Mxfil-G</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Location</h4>
+                        <p>Remote / Global</p>
+                    </div>
+                </div>
             </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Email</h4>
-                            <p>thatonebirdguy52@gmail.com</p>
-                        </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>GitHub</h4>
-                            <p>github.com/Mxfil-G</p>
-                        </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Location</h4>
-                            <p>Remote / Global</p>
-                        </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="company" name="company" placeholder="Company (Optional)">
                     </div>
-                </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                    <div class="form-group">
+                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone (Optional)">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn" id="submitBtn">
+                        <span id="btnText">Send Message</span>
+                        <div id="btnLoader" class="btn-loader" style="display: none;">
+                            <div class="spinner"></div>
                         </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="company" name="company" placeholder="Company (Optional)">
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone (Optional)">
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn" id="submitBtn">
-                            <span id="btnText">Send Message</span>
-                            <div id="btnLoader" class="btn-loader" style="display: none;">
-                                <div class="spinner"></div>
-                            </div>
-                        </button>
-                        <div id="formMessage" class="form-message"></div>
-                    </form>
-                </div>
+                    </button>
+                    <div id="formMessage" class="form-message"></div>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer>
@@ -210,3 +211,4 @@
     <script src="js/script.js"></script>
 </body>
 </html>
+
