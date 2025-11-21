@@ -1,64 +1,205 @@
-<!-- Contact Section -->
-<section class="section contact" id="contact">
-    <div class="container">
-        <div class="section-title">
-            <h2>Get In Touch</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mxfil-G | Developer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Mxfil<span>-G</span></a>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="contact-content">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="contact-text">
-                        <h4>Email</h4>
-                        <p>thatonebirdguy52@gmail.com</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fab fa-github"></i>
-                    </div>
-                    <div class="contact-text">
-                        <h4>GitHub</h4>
-                        <p>github.com/Mxfil-G</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="contact-text">
-                        <h4>Location</h4>
-                        <p>Remote / Global</p>
-                    </div>
-                </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hi, I'm Mxfil-G</h1>
+                <p>Developer & Technology Enthusiast</p>
+                <p>Passionate about creating innovative solutions and exploring new technologies</p>
+                <a href="#projects" class="btn">View My Work</a>
             </div>
-            <div class="contact-form">
-                <form action="https://formsubmit.co/thatonebirdguy52@gmail.com" method="POST">
-                    <input type="hidden" name="_subject" value="New Message from Mxfil-G Website">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="#contact">
+        </div>
+    </section>
+
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Hello! I'm Mxfil-G</h3>
+                    <p>I'm a passionate developer with interest in various technologies and programming languages. I enjoy solving complex problems and building projects that make a difference.</p>
+                    <p>My GitHub profile showcases my journey in coding, with projects ranging from web development to software applications.</p>
+                    <p>When I'm not coding, I enjoy learning about new technologies, contributing to open source projects, and sharing knowledge with the developer community.</p>
                     
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                    <h4>Skills & Technologies</h4>
+                    <div class="skills">
+                        <span class="skill">JavaScript</span>
+                        <span class="skill">HTML/CSS</span>
+                        <span class="skill">Python</span>
+                        <span class="skill">Git</span>
+                        <span class="skill">Web Development</span>
+                        <span class="skill">Problem Solving</span>
+                        <span class="skill">Discord Bots</span>
+                        <span class="skill">API Development</span>
                     </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="about-image">
+                    <div class="profile-img-placeholder">
+                        <i class="fas fa-code"></i>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="company" placeholder="Company (Optional)">
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" class="form-control" name="phone" placeholder="Phone (Optional)">
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" name="message" placeholder="Your Message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Send Message</button>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <section class="section projects" id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>Discord Music Bot</h3>
+                        <p>Advanced music bot with queue system, YouTube integration, and smooth playback.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/Mxfil-G" class="project-link" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>Personal Website</h3>
+                        <p>Responsive portfolio website with modern design and contact integration.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/Mxfil-G" class="project-link" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>AI Chat Assistant</h3>
+                        <p>Intelligent chat assistant with natural language processing capabilities.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/Mxfil-G" class="project-link" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>thatonebirdguy52@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>GitHub</h4>
+                            <p>github.com/Mxfil-G</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Location</h4>
+                            <p>Remote / Global</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form action="https://formsubmit.co/thatonebirdguy52@gmail.com" method="POST">
+                        <input type="hidden" name="_subject" value="New Message from Mxfil-G Website">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="#contact">
+                        
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="company" placeholder="Company (Optional)">
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" name="phone" placeholder="Phone (Optional)">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="message" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2023 Mxfil-G. All Rights Reserved.</p>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/Mxfil-G" class="social-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
