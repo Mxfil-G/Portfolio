@@ -7,8 +7,8 @@ const btnText = document.getElementById('btnText');
 const btnLoader = document.getElementById('btnLoader');
 const formMessage = document.getElementById('formMessage');
 
-// NoCRM Configuration
-const NOCRM_EMAIL = 'mxfil@add.nocrm.io';
+// Your Email
+const YOUR_EMAIL = 'thatonebirdguy52@gmail.com';
 
 // Mobile menu toggle
 menuToggle.addEventListener('click', () => {
@@ -61,7 +61,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// NoCRM Form Submission
+// Direct Email Form Submission
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -86,8 +86,10 @@ if (contactForm) {
                 throw new Error('Please fill in all required fields');
             }
 
-            // Create email body in the format NoCRM expects
+            // Create email body
             const emailBody = `
+New message from your website!
+
 Name: ${formData.name}
 Email: ${formData.email}
 Company: ${formData.company}
@@ -100,17 +102,17 @@ ${formData.message}
 Sent from Mxfil-G Website
             `.trim();
 
-            // Create mailto link for direct email submission
-            const subject = `New Lead: ${formData.name}`;
-            const mailtoLink = `mailto:${NOCRM_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            // Create mailto link
+            const subject = `Website Contact: ${formData.name}`;
+            const mailtoLink = `mailto:${YOUR_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
             
-            // Open user's email client
+            // Open user's email client directly to your email
             window.location.href = mailtoLink;
             
             // Show success message
-            showMessage('Opening your email client... Please send the email to submit your message.', 'success');
+            showMessage('Opening email... Please send the message to contact me directly!', 'success');
             
-            // Reset form after a delay
+            // Reset form
             setTimeout(() => {
                 contactForm.reset();
             }, 2000);
@@ -119,7 +121,7 @@ Sent from Mxfil-G Website
             console.error('Form submission error:', error);
             showMessage(`Error: ${error.message}`, 'error');
         } finally {
-            // Reset button state after a delay
+            // Reset button state
             setTimeout(() => {
                 btnText.style.display = 'inline-block';
                 btnLoader.style.display = 'none';
@@ -138,7 +140,7 @@ function showMessage(message, type) {
     // Scroll to message
     formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     
-    // Auto-hide success messages after 8 seconds
+    // Auto-hide success messages
     if (type === 'success') {
         setTimeout(() => {
             formMessage.style.display = 'none';
@@ -200,4 +202,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-console.log('Mxfil-G Website loaded successfully! 🚀');
+console.log('Mxfil-G Website loaded! Emails go directly to thatonebirdguy52@gmail.com 🚀');
