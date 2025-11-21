@@ -156,28 +156,29 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form action="https://formsubmit.co/mxfil@add.nocrm.io" method="POST">
-                        <input type="hidden" name="_subject" value="New Lead - Mxfil-G Website">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="#contact">
-                        
+                    <form id="contactForm">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="company" placeholder="Company (Optional)">
+                            <input type="text" class="form-control" id="company" name="company" placeholder="Company (Optional)">
                         </div>
                         <div class="form-group">
-                            <input type="tel" class="form-control" name="phone" placeholder="Phone (Optional)">
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone (Optional)">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" name="message" placeholder="Your Message" rows="5" required></textarea>
+                            <textarea class="form-control" id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
                         </div>
-                        <button type="submit" class="btn">Send Message</button>
+                        <button type="submit" class="btn" id="submitBtn">
+                            <span id="btnText">Send Message</span>
+                            <div id="btnLoader" class="btn-loader" style="display: none;">
+                                <div class="spinner"></div>
+                            </div>
+                        </button>
+                        <div id="formMessage" class="form-message"></div>
                     </form>
                 </div>
             </div>
