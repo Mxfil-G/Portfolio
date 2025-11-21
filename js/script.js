@@ -1,7 +1,7 @@
-// NoCRM Configuration
+// NoCRM Email Configuration
 const NOCRM_CONFIG = {
-    API_KEY: 'bb49018483784d3e81ea8ef72622c6cf7ac6c0b8f835cda8',
-    BASE_URL: 'https://mxfil.nocrm.io/api/v2'
+    EMAIL: 'mxfil@add.nocrm.io',
+    SUBJECT: 'New Lead from Mxfil-G Website'
 };
 
 // DOM Elements
@@ -117,9 +117,9 @@ skills.forEach(skill => {
     });
 });
 
-// NoCRM Form Handler
+// NoCRM Form Handler - Using FormSubmit service
 if (contactForm) {
-    contactForm.addEventListener('submit', async function(e) {
+    contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
         // Show loading state
@@ -130,59 +130,83 @@ if (contactForm) {
         
         try {
             const formData = {
-                firstname: document.getElementById('name').value.trim(),
+                name: document.getElementById('name').value.trim(),
                 email: document.getElementById('email').value.trim(),
-                company: document.getElementById('company').value.trim() || undefined,
-                phone: document.getElementById('phone').value.trim() || undefined,
-                description: document.getElementById('message').value.trim(),
-                source: 'Mxfil-G Website'
+                company: document.getElementById('company').value.trim() || 'Not provided',
+                phone: document.getElementById('phone').value.trim() || 'Not provided',
+                message: document.getElementById('message').value.trim()
             };
 
             // Validate required fields
-            if (!formData.firstname || !formData.email || !formData.description) {
+            if (!formData.name || !formData.email || !formData.message) {
                 throw new Error('Please fill in all required fields');
             }
 
-            console.log('Submitting to NoCRM:', formData);
+            // Create hidden form for FormSubmit
+            const hiddenForm = document.createElement('form');
+            hiddenForm.method = 'POST';
+            hiddenForm.action = 'https://formsubmit.co/mxfil@add.nocrm.io';
+            hiddenForm.style.display = 'none';
             
-            // Submit to NoCRM API
-            const response = await fetch(`${NOCRM_CONFIG.BASE_URL}/leads`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-API-KEY': NOCRM_CONFIG.API_KEY
-                },
-                body: JSON.stringify(formData)
-            });
-
-            const responseData = await response.json();
+            // Add hidden fields
+            const addHiddenField = (name, value) => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = name;
+                input.value = value;
+                hiddenForm.appendChild(input);
+            };
             
-            if (response.ok) {
-                showMessage('Thank you for your message! I\'ll get back to you soon.', 'success');
-                contactForm.reset();
-            } else {
-                console.error('NoCRM API Error:', responseData);
-                throw new Error(responseData.message || 'Failed to submit form');
-            }
+            addHiddenField('_subject', 'New Lead from Mxfil-G Website');
+            addHiddenField('_template', 'table');
+            addHiddenField('_captcha', 'false');
+            addHiddenField('_next', window.location.href + '?success=true');
+            addHiddenField('name', formData.name);
+            addHiddenField('email', formData.email);
+            addHiddenField('company', formData.company);
+            addHiddenField('phone', formData.phone);
+            addHiddenField('message', formData.message);
+            addHiddenField('source', 'Mxfil-G Website');
+            
+            document.body.appendChild(hiddenForm);
+            hiddenForm.submit();
+            
+            // Show immediate success message
+            showMessage('Thank you for your message! I\'ll get back to you soon.', 'success');
+            contactForm.reset();
+            
+            // Remove the hidden form after submission
+            setTimeout(() => {
+                document.body.removeChild(hiddenForm);
+            }, 1000);
             
         } catch (error) {
             console.error('Form submission error:', error);
-            
-            // Fallback options
-            if (error.message.includes('Failed to submit form') || error.message.includes('Network')) {
-                showMessage('Sorry, there was an error with the form. Please email me directly at thatonebirdguy52@gmail.com', 'error');
-            } else {
-                showMessage(`Error: ${error.message}`, 'error');
-            }
+            showMessage(`Error: ${error.message}`, 'error');
         } finally {
-            // Reset button state
-            btnText.style.display = 'inline-block';
-            btnLoader.style.display = 'none';
-            submitBtn.disabled = false;
+            // Reset button state after a delay
+            setTimeout(() => {
+                btnText.style.display = 'inline-block';
+                btnLoader.style.display = 'none';
+                submitBtn.disabled = false;
+            }, 2000);
         }
     });
 }
 
+// Check for success parameter in URL
+function checkForSuccessMessage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+        showMessage('Thank you for your message! I\'ll get back to you soon.', 'success');
+        
+        // Clean URL
+        const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        window.history.replaceState({}, document.title, cleanUrl);
+    }
+}
+
+// Show message function
 function showMessage(message, type) {
     formMessage.textContent = message;
     formMessage.className = `form-message ${type}`;
@@ -265,4 +289,82 @@ window.addEventListener('scroll', () => {
     }, 10);
 });
 
-console.log('Mxfil-G Website loaded successfully! 🚀');
+// Check for success message on page load
+document.addEventListener('DOMContentLoaded', checkForSuccessMessage);
+
+// Add console greeting
+console.log(`
+🌟 Mxfil-G Website Loaded Successfully! 🌟
+
+Hey there! Welcome to the console. 
+This website was built with love and attention to detail.
+
+Features:
+✅ Responsive Design
+✅ NoCRM Integration (mxfil@add.nocrm.io)
+✅ Smooth Animations
+✅ Contact Form
+✅ Mobile-Friendly
+
+Feel free to explore the code! 🚀
+`);
+
+// Add error tracking
+window.addEventListener('error', function(e) {
+    console.error('Website Error:', e.error);
+});
+
+// Add page visibility tracking
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+        console.log('Page hidden');
+    } else {
+        console.log('Page visible');
+    }
+});
+
+// Add beforeunload event for form data preservation
+window.addEventListener('beforeunload', function(e) {
+    const form = document.getElementById('contactForm');
+    if (form) {
+        const formData = new FormData(form);
+        let hasData = false;
+        
+        for (let value of formData.values()) {
+            if (value.trim() !== '') {
+                hasData = true;
+                break;
+            }
+        }
+        
+        if (hasData) {
+            // Optional: Save form data to localStorage
+            const formState = {
+                name: document.getElementById('name')?.value || '',
+                email: document.getElementById('email')?.value || '',
+                company: document.getElementById('company')?.value || '',
+                phone: document.getElementById('phone')?.value || '',
+                message: document.getElementById('message')?.value || ''
+            };
+            
+            localStorage.setItem('contactFormState', JSON.stringify(formState));
+        }
+    }
+});
+
+// Restore form data on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const savedForm = localStorage.getItem('contactFormState');
+    if (savedForm) {
+        const formState = JSON.parse(savedForm);
+        
+        if (document.getElementById('name')) document.getElementById('name').value = formState.name;
+        if (document.getElementById('email')) document.getElementById('email').value = formState.email;
+        if (document.getElementById('company')) document.getElementById('company').value = formState.company;
+        if (document.getElementById('phone')) document.getElementById('phone').value = formState.phone;
+        if (document.getElementById('message')) document.getElementById('message').value = formState.message;
+        
+        // Clear saved form data
+        localStorage.removeItem('contactFormState');
+    }
+});
