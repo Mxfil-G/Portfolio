@@ -40,6 +40,7 @@ header {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
 }
 
 nav {
@@ -100,6 +101,7 @@ nav {
     display: none;
     cursor: pointer;
     font-size: 1.5rem;
+    color: white;
 }
 
 /* Hero Section */
@@ -137,12 +139,18 @@ nav {
     font-size: 3.5rem;
     margin-bottom: 20px;
     font-weight: 700;
+    animation: fadeInUp 1s ease;
 }
 
 .hero p {
     font-size: 1.3rem;
     margin-bottom: 30px;
     opacity: 0.9;
+    animation: fadeInUp 1s ease 0.2s both;
+}
+
+.hero .btn {
+    animation: fadeInUp 1s ease 0.4s both;
 }
 
 .btn {
@@ -157,12 +165,18 @@ nav {
     text-decoration: none;
     transition: var(--transition);
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn:hover {
     background-color: #2980b9;
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+    transform: translateY(-1px);
 }
 
 /* About Section */
@@ -218,6 +232,7 @@ nav {
 .about-text p {
     margin-bottom: 20px;
     color: #555;
+    line-height: 1.8;
 }
 
 .skills {
@@ -234,6 +249,13 @@ nav {
     border-radius: 20px;
     font-size: 0.9rem;
     font-weight: 500;
+    transition: var(--transition);
+    cursor: default;
+}
+
+.skill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
 }
 
 .about-image {
@@ -245,14 +267,20 @@ nav {
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background-color: var(--secondary);
+    background: linear-gradient(135deg, var(--secondary) 0%, #2980b9 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
     color: white;
     font-size: 5rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    animation: float 3s ease-in-out infinite;
+}
+
+.profile-img-placeholder:hover {
+    transform: scale(1.05);
 }
 
 /* Projects Section */
@@ -272,6 +300,13 @@ nav {
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     transition: var(--transition);
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.project-card.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .project-card:hover {
@@ -282,12 +317,17 @@ nav {
 .project-img {
     width: 100%;
     height: 200px;
-    background-color: var(--primary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-size: 3rem;
+    transition: var(--transition);
+}
+
+.project-card:hover .project-img {
+    transform: scale(1.05);
 }
 
 .project-info {
@@ -303,6 +343,7 @@ nav {
 .project-info p {
     color: #666;
     margin-bottom: 15px;
+    line-height: 1.6;
 }
 
 .project-links {
@@ -316,10 +357,14 @@ nav {
     font-weight: 500;
     font-size: 0.9rem;
     transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .project-link:hover {
     color: var(--primary);
+    transform: translateX(5px);
 }
 
 /* Contact Section */
@@ -336,6 +381,11 @@ nav {
     display: flex;
     align-items: center;
     margin-bottom: 25px;
+    transition: var(--transition);
+}
+
+.contact-item:hover {
+    transform: translateX(10px);
 }
 
 .contact-icon {
@@ -349,6 +399,12 @@ nav {
     justify-content: center;
     margin-right: 15px;
     font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.contact-item:hover .contact-icon {
+    background-color: var(--primary);
+    transform: scale(1.1);
 }
 
 .contact-text h4 {
@@ -376,17 +432,60 @@ nav {
     border-radius: 5px;
     font-size: 1rem;
     transition: var(--transition);
+    background-color: white;
 }
 
 .form-control:focus {
     border-color: var(--secondary);
     outline: none;
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    transform: translateY(-2px);
 }
 
 textarea.form-control {
     min-height: 150px;
     resize: vertical;
+    font-family: inherit;
+}
+
+/* Form Loading States */
+.btn-loader {
+    display: inline-block;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ffffff;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.form-message {
+    margin-top: 15px;
+    padding: 12px 15px;
+    border-radius: 5px;
+    display: none;
+    font-weight: 500;
+    text-align: center;
+}
+
+.form-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.form-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
 }
 
 /* Footer */
@@ -434,6 +533,27 @@ footer {
     color: rgba(255, 255, 255, 0.7);
 }
 
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 992px) {
     .about-content, .contact-content {
@@ -442,6 +562,13 @@ footer {
     
     .about-image {
         order: -1;
+        margin-bottom: 40px;
+    }
+    
+    .profile-img-placeholder {
+        width: 250px;
+        height: 250px;
+        font-size: 4rem;
     }
 }
 
@@ -462,6 +589,7 @@ footer {
         justify-content: flex-start;
         padding-top: 50px;
         transition: var(--transition);
+        z-index: 999;
     }
     
     .nav-links.active {
@@ -480,10 +608,8 @@ footer {
         font-size: 1.1rem;
     }
     
-    .profile-img-placeholder {
-        width: 250px;
-        height: 250px;
-        font-size: 4rem;
+    .section-title h2 {
+        font-size: 2rem;
     }
     
     .footer-content {
@@ -498,11 +624,17 @@ footer {
         font-size: 2rem;
     }
     
-    .section-title h2 {
-        font-size: 2rem;
-    }
-    
     .projects-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .container {
+        width: 95%;
+    }
+    
+    .profile-img-placeholder {
+        width: 200px;
+        height: 200px;
+        font-size: 3rem;
     }
 }
